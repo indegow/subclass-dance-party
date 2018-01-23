@@ -3,7 +3,7 @@ body, html{
 }
 body{
   margin: 0px;
-  background-color:#444;
+  background-image:url("prettybeach.jpeg");
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
@@ -24,4 +24,15 @@ body, a:link, a:visited, a:active{
   border:10px solid red;
   border-radius:10px;
   position:absolute;
+}
+.lineUp{
+  padding:5px 12px;
+  float:right;
+}
+.partnerUp{
+  padding:5px 12px;
+  float:right;
+}
+.dancer:hover {
+  border: none;
 }

@@ -31,9 +31,56 @@ $(document).ready(function() {
   });
 
   $('.lineUp').on('click', function(event) {
-    for (var i = 0; i < window.dancer.length; i++) {
-      window.dancer[i].css({'height': '10px'});
+    for (var i = 0; i < window.dancers.length; i++) {
+      window.dancers[i].lineUp();
     }
   });
+
+  $('.partnerUp').on('click', function(event) {
+    // loop through all of the dancers
+    for (var i = 0; i < window.dancers.length; i++) {
+      var currentDancer = window.dancers[i];
+      var currentDancerCoordinates = [currentDancer.$node.css('top'), currentDancer.$node.css('left')];
+      var hypotenuses = [];
+      // for each dancer, find its closest dancer 
+      for (var j = 0; j < window.dancers.length; j++) {
+        if (window.dancers[j] !== currentDancer) {
+          // loop through all of the other dancers, and get the hypotenuse length
+          var potentialPartner = window.dancers[j];
+          var potentialPartnerCoordinates = [potentialPartner.$node.css('top'), potentialPartner.$node.css('left')];
+          var currentDancerTop = currentDancerCoordinates[0].replace('px', '');
+          var currentDancerLeft = currentDancerCoordinates[1].replace('px', '');
+          var potentialPartnerTop = potentialPartnerCoordinates[0].replace('px', '');
+          var potentialPartnerLeft = potentialPartnerCoordinates[1].replace('px', '');
+          // get top diff
+          var topDiff = Math.abs(currentDancerTop - potentialPartnerTop);
+          // get left diff
+          var leftDiff = Math.abs(currentDancerLeft - potentialPartnerLeft);
+          
+          // hypotenuse = square root of leftDiff squared + rightdiff squared
+          var hypotenuse = Math.sqrt(Math.pow(topDiff, 2) + Math.pow(leftDiff, 2));
+          hypotenuses.push([potentialPartner, hypotenuse]);
+          
+        }
+      }
+      // find the minimum
+      // use that to find its pair
+      
+      
+      
+
+    }
+    
+    
+
+    // add each of these pairs to a new array 
+
+    // find the midpoint of each of these pairs locations
+
+    // tell each of the pairs to move to the midpoint
+
+
+  });
+
 });
 
