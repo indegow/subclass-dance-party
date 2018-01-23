@@ -10,9 +10,9 @@ makeRainbowDancer.prototype.oldStep = makeDancer.prototype.step;
 
 makeRainbowDancer.prototype.step = function() {
   this.oldStep();
-  var colorArray = ['red', 'blue', 'green', 'yellow'];
+  var colorArray = ['red', 'blue', 'green', 'yellow', 'gold', 'silver'];
 
-  var color = colorArray[Math.floor(Math.random() * 4)];
+  var color = colorArray[Math.floor(Math.random() * 6)];
 
   this.$node.css({'border-color': color});
 };

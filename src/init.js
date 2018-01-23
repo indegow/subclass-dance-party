@@ -36,12 +36,35 @@ $(document).ready(function() {
     }
   });
 
+  $('body').on('mouseover', '.dancer', function(event) {
+    // current Dancer is this 
+    var currentDancerID = this.id;
+    var currentDancer = window.dancers[currentDancerID];
+    var currentDancerTop = currentDancer.$node.css('top').replace('px','');
+    var currentDancerLeft = currentDancer.$node.css('left').replace('px','');
+
+    //**** FINDING DANCE PARTNER ON MOUSEOVER ***** 
+
+    // get current Dancer coordinates
+    // loop through all other dancers
+    // calculate hypotenuse for each
+    // find the closest dancer
+    // turn it black
+
+    // turn partner black (by adding black class)
+  });
+
+  $('body').on('mouseleave', '.dancer', function(event) {
+    // turn partner back (by removing class)
+  });
+
   $('.partnerUp').on('click', function(event) {
     // loop through all of the dancers
     for (var i = 0; i < window.dancers.length; i++) {
       var currentDancer = window.dancers[i];
       var currentDancerCoordinates = [currentDancer.$node.css('top'), currentDancer.$node.css('left')];
       var hypotenuses = [];
+      var potentialPartners = [];
       // for each dancer, find its closest dancer 
       for (var j = 0; j < window.dancers.length; j++) {
         if (window.dancers[j] !== currentDancer) {
@@ -59,11 +82,19 @@ $(document).ready(function() {
           
           // hypotenuse = square root of leftDiff squared + rightdiff squared
           var hypotenuse = Math.sqrt(Math.pow(topDiff, 2) + Math.pow(leftDiff, 2));
-          hypotenuses.push([potentialPartner, hypotenuse]);
+          hypotenuses.push(hypotenuse);
+          potentialPartners.push(potentialPartner);
           
         }
       }
       // find the minimum
+      var smallestHypotenuse = Math.min.apply(null, hypotenuses);
+
+      var indexOfClosestPartner = hypotenuses.indexOf(smallestHypotenuse);
+      var chosenPartner = potentialPartners[indexOfClosestPartner];
+
+      console.log(chosenPartner);
+      
       // use that to find its pair
       
       
